@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Built-By: amicussi
+Build-Jdk: 11.0.2
+Implementation-Title: Company
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.company.base
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/company
+Created-By: Maven Integration for Eclipse
+
