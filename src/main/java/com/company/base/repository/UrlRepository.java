@@ -11,7 +11,7 @@ import com.company.base.model.Url;
 import com.company.base.model.UrlItem;
 
 @Repository
-public interface UrlRetrieverRepository extends JpaRepository<Url, Long>, UrlRetrieverRepositoryCustom {
+public interface UrlRepository extends JpaRepository<Url, Long>, UrlRepositoryCustom {
 
 	@Query("select count(url) from Url url where urlValue = :urlValue")
 	public int findByUrlValue(@Param("urlValue") String urlValue);

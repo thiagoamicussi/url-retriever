@@ -9,7 +9,7 @@ import com.company.base.model.Url;
 import com.company.base.model.UrlItem;
 
 @Repository
-public class UrlRetrieverRepositoryImpl implements UrlRetrieverRepositoryCustom {
+public class UrlRepositoryImpl implements UrlRepositoryCustom {
 
 	@Autowired
 	WebPageParserAdapter adapter;
