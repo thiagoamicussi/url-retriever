@@ -1,7 +1,0 @@
--------------------------------------------------------------------------------
-Test set: com.company.base.CompanyApplicationTests
--------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 1, Skipped: 0, Time elapsed: 0.409 s <<< FAILURE! - in com.company.base.CompanyApplicationTests
-initializationError(com.company.base.CompanyApplicationTests)  Time elapsed: 0.009 s  <<< ERROR!
-java.lang.Exception: No runnable methods
-
