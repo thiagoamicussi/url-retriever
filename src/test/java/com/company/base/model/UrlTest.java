@@ -1,31 +1,19 @@
 package com.company.base.model;
 
-import static org.junit.Assert.assertTrue;
-
 import org.junit.Test;
 
 public class UrlTest {
 	
-	@Test
-    public void whenCalledSetUrlGivenTooBigValueThenTruncate() {
-		String tooLongUrlValue = "dafadsfadsfdsafdsafdakjçlkjçlkjçlkjçjçjçjçjçkjçlkjçlkjçljkçlkadfadsfadsfjkdafiupiquerqyeruqewgfmioupupiupoupu";
-		int tooLongUrlLength = tooLongUrlValue.length();
-		Url url = new Url(tooLongUrlValue);
-		
-		int truncatedUrlLength = url.getUrlValue().length();
-		
-		assertTrue(truncatedUrlLength < tooLongUrlLength);
+	@Test(expected = IllegalArgumentException.class)
+	public void givenNullUrl_whenCreateUrl_thenError() {
+		@SuppressWarnings("unused")
+		Url url = new Url(null);
 	}
 	
-	@Test
-    public void whenCalledSetUrlGivenAcceptableValueNotTruncate() {
-		String initialUrlValue = "dafadsfadsfdsafdsafdakjçlkjçlkjçlkjçjçjçjçjçkjçlkjçlkjçljkçlkadfadsfadsfjkdafiupiquerqyeruqewgfmi";
-		int initialUrlLength = initialUrlValue.length();
-		Url url = new Url(initialUrlValue);
-		
-		int currentUrlLength = url.getUrlValue().length();
-		
-		assertTrue(initialUrlLength == currentUrlLength);
+	@Test(expected = IllegalArgumentException.class)
+	public void givenEmptyUrl_whenCreateUrl_thenError() {
+		@SuppressWarnings("unused")
+		Url url = new Url("");
 	}
-
+	
 }

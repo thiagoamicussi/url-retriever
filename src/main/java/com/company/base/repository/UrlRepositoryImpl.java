@@ -12,11 +12,11 @@ import com.company.base.model.UrlItem;
 public class UrlRepositoryImpl implements UrlRepositoryCustom {
 
 	@Autowired
-	WebPageParserAdapter adapter;
+	WebPageParserAdapter webParserAdapter;
 	
 	@Override
 	public Set<UrlItem> getUrlsFrom(Url url) {
-		return adapter.GetUrlsFrom(url);
+		return webParserAdapter.GetUrlsFrom(url);
 		
 	}
 

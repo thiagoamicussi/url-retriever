@@ -21,14 +21,14 @@ import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 @ToString
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 @Audited
 @Entity
 @Table(indexes = {@Index(name = "idxUrlValue", columnList="urlValue", unique = true)})
-public class Url extends EntityAbstract {
+public class Url extends EntityAbstract implements IUrlValidator{
 	
 	@Getter
 	private String urlValue;
@@ -38,11 +38,12 @@ public class Url extends EntityAbstract {
 	private Set<UrlItem> items = new HashSet<>();
 	
 	public Url(String urlValue) {
-		this.urlValue = urlTruncate(urlValue);
+		validateUrl(urlValue);
+		this.urlValue = urlValue;
 	}
-	
+
 	public Url(long id, String urlValue) {
-		this.urlValue = urlTruncate(urlValue);
+		this.urlValue = urlValue;
 	}
 	
 	public void add(UrlItem urlItem) {
@@ -50,13 +51,10 @@ public class Url extends EntityAbstract {
 	}
 	
 	public void setUrlValue(String urlValue) {
-		this.urlValue = urlTruncate(urlValue);
+		this.urlValue = urlValue;
 	}
-	
-	public static String urlTruncate(String urlValue) {
-		int maxchar = 100;
-		int maxLength = (urlValue.length() < maxchar)?urlValue.length():maxchar;
-		urlValue = urlValue.substring(0, maxLength);
-		return urlValue;
+
+	public boolean isSameUrl(String url) {
+		return this.urlValue.equals(url);
 	}
 }

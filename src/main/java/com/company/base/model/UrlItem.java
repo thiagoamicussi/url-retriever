@@ -16,12 +16,14 @@ import lombok.EqualsAndHashCode;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.FieldDefaults;
 
 @Getter
 @Setter
 @EqualsAndHashCode(callSuper=false)
 @NoArgsConstructor
+@ToString
 @AllArgsConstructor
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
@@ -29,7 +31,7 @@ import lombok.experimental.FieldDefaults;
 @Entity
 @Table(indexes = {@Index(name = "idxUrlIdUrlValue", columnList="url_id,urlValue", unique = true),
 				  @Index(name = "idxUrl", columnList="urlValue")})
-public class UrlItem extends EntityAbstract {
+public class UrlItem extends EntityAbstract implements IUrlValidator {
 	
 	private String urlValue;
 	
@@ -39,11 +41,12 @@ public class UrlItem extends EntityAbstract {
 
 	public UrlItem(String urlValue) {
 		super();
-		this.urlValue = Url.urlTruncate(urlValue);
+		validateUrl(urlValue);
+		this.urlValue = urlValue;
 	}
 	
 	public void setUrlValue(String urlValue) {
 		
-		this.urlValue = Url.urlTruncate(urlValue);
+		this.urlValue = urlValue;
 	}
 }

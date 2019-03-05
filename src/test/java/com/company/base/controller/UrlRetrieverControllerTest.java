@@ -31,8 +31,8 @@ public class UrlRetrieverControllerTest {
 	}
 	
 	@Test
-    public void whenCalledSaveGivenValidDataUrlThenCorrect() {		
-        Url url = new Url("http://www.uol.com.br");
+    public void givenValidDataUrl_whenSave_thenCorrect() {		
+        Url url = mock(Url.class);
        
         ModelAndView mv = controller.saveUrl(url, mockedBindingResult, mockedModel);
         
@@ -40,8 +40,8 @@ public class UrlRetrieverControllerTest {
 	}
 	
 	@Test
-    public void whenCalledSaveUrlGivenInvalidDataThenError() {		
-		Url url = new Url("http://www.malformedUrl.com.br");
+    public void givenInvalidData_whenSave_thenError() {		
+		Url url = mock(Url.class);
 		BindingResult mockedBindingResult = mock(BindingResult.class);
 		when(mockedBindingResult.hasErrors()).thenReturn(true);
 
@@ -51,7 +51,7 @@ public class UrlRetrieverControllerTest {
 	}
 	
 	@Test(expected=IllegalArgumentException.class)
-    public void whenCalledShowUpdateFormAndInvalidDataThenError() {		
+    public void givenInvalidData_whenShowUpdateForm_thenError() {		
 		
 		long invalidId = 8;
 		mockedService = mock(UrlRetrieverService.class);
@@ -62,7 +62,7 @@ public class UrlRetrieverControllerTest {
 	}
 	
 	@Test
-    public void whenCalledShowUpdateFormGivenValidDataThenCorrect() {		
+    public void givenValidData_whenShowUpdateForm_thenCorrect() {		
 		
 		long validId = 9;
 		mockedService = mock(UrlRetrieverService.class);
@@ -77,7 +77,7 @@ public class UrlRetrieverControllerTest {
 	
 	
 	@Test(expected=IllegalArgumentException.class)
-    public void whenCalledDeleteGivenInvalidDataThenError() {		
+    public void givenInvalidData_whenDelete_thenError() {		
 		
 		long invalidId = 8;
 		mockedService = mock(UrlRetrieverService.class);
@@ -88,7 +88,7 @@ public class UrlRetrieverControllerTest {
 	}
 	
 	@Test
-    public void whenCalledDeleteGivenValidDataThenCorrect() {		
+    public void givenValidData_whenDelete_thenCorrect() {		
 		
 		long invalidId = 9;
 		mockedService = mock(UrlRetrieverService.class);

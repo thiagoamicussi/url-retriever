@@ -17,6 +17,5 @@ public interface UrlRepository extends JpaRepository<Url, Long>, UrlRepositoryCu
 	public int findByUrlValue(@Param("urlValue") String urlValue);
 
 	@Query("select items from UrlItem items where url.id = :urlId")
-	public List<UrlItem> findItemsByUrlId(long urlId);
-
+	public List<UrlItem> findItemsByUrlId(@Param("urlId") long urlId);
 }

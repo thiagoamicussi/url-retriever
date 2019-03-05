@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 import com.company.base.model.Url;
 import com.company.base.model.UrlItem;
 import com.company.base.repository.UrlItemRepository;
-import com.company.base.repository.UrlRetrieverRepository;
+import com.company.base.repository.UrlRepository;
 
 import lombok.NoArgsConstructor;
 
@@ -19,12 +19,12 @@ import lombok.NoArgsConstructor;
 @Service
 public class UrlRetrieverService extends ServiceAbstract { 
 	
-	private static int SAVED_URL_COUNTER = 0;
+	private int urlCounter = 0;
 	
 	@Autowired
-	private UrlRetrieverRepository urlRepository;
+	private UrlRepository urlRepository;
 	
-	public UrlRetrieverService(UrlRetrieverRepository repository) {
+	public UrlRetrieverService(UrlRepository repository) {
 		this.urlRepository = repository;
 	}
 	
@@ -59,22 +59,18 @@ public class UrlRetrieverService extends ServiceAbstract {
 		
 		Set<UrlItem> items = urlRepository.getUrlsFrom(url);
 		if(items.isEmpty()) return url;
-	    
+		
 		Iterator<UrlItem> it = items.iterator();
 	    while(it.hasNext()) {
-	    	urlRepository.save(url);
+	    	this.urlRepository.save(url);
 	    	setItemsData(url, items);	    	
 	    	
-	    	SAVED_URL_COUNTER++;
-	    	if(SAVED_URL_COUNTER >= 50) {
+	    	this.urlCounter++;
+	    	if(this.urlCounter >= 50) {
 				break;
 			}
 	    	
-	    	UrlItem nextUrlItem = it.next();
-	    	
-	    	if(nextUrlItem.getUrlValue().isEmpty()) continue;
-	    	
-	    	Url nextUrl = new Url(nextUrlItem.getUrlValue()); 
+	    	Url nextUrl = new Url(it.next().getUrlValue()); 
 	    	save(nextUrl);
 	    }
 	    return url;
