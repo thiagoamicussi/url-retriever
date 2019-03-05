@@ -1,0 +1,6 @@
+FROM anapsix/alpine-java
+MAINTAINER company.com
+COPY docker/url-retriever.jar /opt/url-retriever/lib/
+ENTRYPOINT ["/usr/bin/java"]
+CMD ["-jar", "/opt/url-retriever/lib/url-retriever.jar"]
+EXPOSE 8080
